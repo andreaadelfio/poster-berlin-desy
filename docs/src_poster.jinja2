@@ -1,0 +1,324 @@
+{% extends "poster.jinja2" %}
+
+{### Header ###}
+
+{% set poster_title = "Anomaly Detection with Machine Learning in Time Series Data from the Fermi Anti-Coincidence Detector" %}
+{% set poster_subtitle = "" %}
+{% set venue_long = "Gravi Gamma Nu 2024" %}
+{% set venue_short = "09/10/2024 - 11/10/2024" %}
+{% set webpage_title = poster_title + " (" + venue_long + " poster)" %}
+{% set project_url = "" %}
+{% set venue_url = "https://gravi-gamma.my.canva.site/fifth-gravi-gamma-workshop" %}
+{% set contact = "andrea.adelfio@pg.infn.it" %}
+
+{% set pub_datetime_iso = "2024-10-09" %}
+{% set pub_date = "October 09, 2024" %}
+
+{% block custom_head %}
+  <style type="text/css">
+    html { font-size: 0.95rem }
+  </style>
+{% endblock %}
+
+{% block badges %}
+  {# --------------- #}
+  {# For HTML poster #}
+  {# --------------- #}
+  <a href="https://agenda.infn.it/event/38056/"><img alt="indico event" src="https://img.shields.io/badge/indico-event-black?style=flat&logoColor=white"></a>
+  <a href="https://agenda.infn.it/event/38056/contributions/244588/"><img alt="indico contribution" src="https://img.shields.io/badge/indico-contribution-c48e48?style=flat&logoColor=white"></a>
+  <a href="https://agenda.infn.it/event/38056/contributions/244588/attachments/126603/186941/Anomaly%20Detection%20with%20Machine%20Learning%20in%20Time%20Series%20Data%20from%20the%20Fermi%20Anti-Coincidence%20Detector%20(09_10_2024%20-%2011_10_2024%20poster).pdf"><img alt="poster PDF" src="https://img.shields.io/badge/PDF-poster-EC1C24?style=flat&logo=Adobe%20Acrobat%20Reader&logoColor=white"></a>
+  <a href="https://github.com/andreaadelfio/poster-gravigammanu24-acdanomalies"><img alt="poster on github" src="https://img.shields.io/badge/github-poster-red"></a>
+  <a href="https://github.com/andreaadelfio/ACDAnomalies"><img alt="code on github" src="https://img.shields.io/badge/github-code-white"></a>
+{% endblock %}
+
+{% block authors %}
+  <span class="medium">
+    <a property="author"><strong>Andrea Adelfio</strong><sup>1</sup></a>,
+    <a property="author">Sara Cutini<sup>1</sup></a>,
+    <a property="author">Stefano Germani<sup>2</sup></a>,
+    <a property="author">Francesco Longo<sup>3</sup></a>,
+    <a property="author">Simone Maldera<sup>4</sup></a>,
+    <a property="author">Riccardo Crupi<sup>5</sup></a>
+  </span>
+{% endblock %}
+
+{% block affiliations %}
+  <span class="normal">
+    <sup>1</sup><a property="sourceOrganization">INFN-Perugia</a>,
+    <sup>2</sup><a property="sourceOrganization">University of Perugia</a>,
+    <sup>3</sup><a property="sourceOrganization">INFN-Trieste</a>,
+    <sup>4</sup><a property="sourceOrganization">INFN-Torino</a>,
+    <sup>5</sup><a property="sourceOrganization">University of Udine</a>,
+    {# <sup>a</sup><a property="sourceOrganization">Istituto Nazionale di Fisica Nucleare (INFN), CNAF, Italy</a> #}
+  </span>
+{% endblock %}
+
+{# Project logos shown on the left side #}
+{% block project_logos %}
+  {# --------------- #}
+  {# For HTML poster #}
+  {# --------------- #}
+  {# <div style="width: 24rem">
+    <a href="https://next-generation-eu.europa.eu"><img style="height: 2.5rem; padding: 0.55rem" src="img/logos/nextgeneu-white-logo.png" alt="NextGenEU logo"></a>
+    <a href="https://www.mur.gov.it"><img style="height: 2.5rem; padding: 0.55rem" src="img/logos/mur-white-logo.png" alt="MUR logo"></a>
+    <a href="https://www.italiadomani.gov.it"><img style="height: 2.5rem; padding: 0.55rem" src="img/logos/pnrr-white-logo.png" alt="PNRR logo"></a>
+    <a href="https://www.supercomputing-icsc.it/en"><img style="height: 2.5rem; padding: 0.55rem" src="img/logos/icsc-white-logo-nobkg.png" alt="ICSC logo"></a>
+  </div> #}
+  {# -------------- #}
+  {# For PDF poster #}
+  {# -------------- #}
+  <div style="width: 24rem">
+    <a href="https://next-generation-eu.europa.eu"><img style="height: 2.5rem; padding-right: 0.55rem; padding-bottom: 0.5rem" src="img/logos/nextgeneu-white-logo.png" alt="NextGenEU logo"></a>
+    <a href="https://www.mur.gov.it"><img style="height: 2.5rem; padding-left: 0.55rem; padding-bottom: 0.5rem" src="img/logos/mur-white-logo.png" alt="MUR logo"></a>
+    <a href="https://www.italiadomani.gov.it"><img style="height: 2.5rem; padding-right: 1.0rem; padding-top: 0.5rem" src="img/logos/pnrr-white-logo.png" alt="PNRR logo"></a>
+    <a href="https://www.supercomputing-icsc.it/en"><img style="height: 2.5rem; padding-left: 1.0rem; padding-top: 0.5rem" src="img/logos/icsc-white-logo-nobkg.png" alt="ICSC logo"></a>
+  </div>
+{% endblock %}
+
+{# Extra logos shown on the right side #}
+{% block logos %}
+  {# --------------- #}
+  {# For HTML poster #}
+  {# --------------- #}
+  {# <a href="{{ venue_url }}"><img style="padding: 0.55rem" src="img/logos/fermi-logo.png" alt="Fermi logo"></a> #}
+  {# -------------- #}
+  {# For PDF poster #}
+  {# -------------- #}
+  <a href="{{ venue_url }}"><img style="padding-right: 2.5rem" src="img/logos/fermi-logo.png" alt="Fermi logo"></a>
+{% endblock %}
+
+{### Footer ###}
+
+{# Disclaimer shown on the left side #}
+{% block disclaimer %}
+  {# on behalf of the LHCb Simulation Project #}
+  <strong>ICSC</strong> Italian Research Center on High-Performance Computing, Big Data and Quantum Computing
+{% endblock %}
+
+{# Contact information shown on the middle side #}
+{% block contact_info %}
+  {# contact: <a class="monospace">{{ contact }}</a> #}
+  <em>Missione 4 • Istruzione e Ricerca</em>
+{% endblock %}
+
+{# General information shown on the right side #}
+{% block general_info %}
+  October 2024, Bari (Italy)
+{% endblock %}
+
+{### Contents ###}
+
+{% block contents %}
+  {# Abstract #}
+  <article>
+    <header><h3>Abstract</h3></header>
+    <p>
+      Multimessenger astrophysics relies on multiple observational data channels, requiring efficient methods to analyze 
+      events of astrophysical origin. Given the increasing volume and complexity of data from modern observatories, 
+      Machine Learning techniques have become essential for efficiently identifying signals.
+    </p>
+    <p>
+      This project applies Machine Learning techniques to time series data from the Anti-Coincidence Detector on 
+      the Fermi Gamma-ray Space Telescope, with the aim of improving the detection of high-energy transient events such 
+      as Gamma-Ray Bursts. The poster begins by introducing the motivations of this work; followed by an overview of the 
+      Anti-Coincidence Detector and the satellite data itself. A Feed-Forward Neural Network is employed to learn temporal 
+      patterns in the time series and predict the background these series. It is followed by the implementation of a 
+      triggering algorithm for anomaly detection, which identifies significant deviations from the background, 
+      signaling the presence of astrophysical transients in the ACD data.
+    </p>
+    <p>
+      This tool can be adapted for various signals, making it applicable across different contexts in multimessenger studies.
+    </p>
+  </article>
+
+  {# 1. Motivation #}
+  <article>
+    <header><h3>1. Motivation</h3></header>
+    <p>
+      This work presents a versatile and flexible <strong>Machine Learning-based software</strong> designed to
+      address two challenges in the analysis of time series data: 
+      <ul>
+        <li><strong>modeling the temporal behaviour</strong>
+        within time series datasets to predict the evolution of time series;</li>
+        <li><strong>identifying anomalies</strong> within those series;</li>
+      </ul>
+    </p>
+  </article>
+
+  {# 2. What is The Anti-Coincidence Detector? #}
+  <article>
+    <header><h3>2. What is The Anti-Coincidence Detector?</h3></header>
+    <p>
+      The <strong>Anti-Coincidence Detector</strong> (ACD) is a system on board of Fermi used to reject background
+      signal such as charged-particles from the Large Area Telescope signal. 
+    </p>
+    <figure>
+      <img style="width: 70%" src="img/pictures/ACD_from_above.jpg" alt="ACD_from_above">
+    </figure>
+    <p>
+      The ACD is composed of 89 plastic scintillator tiles that detect particles and photons, distributed in the five faces. The signal in each face 
+      looks like this:
+    </p>
+    <figure>
+      <img style="width: 100%" src="img/signals/Outputs_24.png" alt="outputs 24 signal">
+    </figure>
+    <figure>
+      <img style="width: 100%" src="img/signals/Outputs_24_flare.png" alt="Outputs_24_flare">
+    </figure>
+  </article>
+
+  {# 3. Dataset #}
+  <article>
+    <header><h3>3. Dataset</h3></header>
+    <p>
+      The dataset used for the training and testing of the software is composed of the time series of the five signals in the ACD and a set of input features:
+      <ul>
+        <li>the parameters in the <strong>weekly Spacecraft files</strong> (FT2) from the Fermi Collaboration;</li>
+        <figure>
+          <img style="width: 100%" src="img/pictures/inputs_ft2.png" alt="full/inputs_ft2 schemes">
+        </figure>
+        <li>the <strong>Solar Activity</strong> retrieved from the Geostationary Operational Environmental Satellite (GOES) X-Ray Sensor (XRS);</li>
+        <figure>
+          <img style="width: 100%" src="img/pictures/inputs_solar.png" alt="full/inputs_solar schemes">
+        </figure>
+        <li>the signals of the five faces in the ACD.</li>
+        <figure>
+          <img style="width: 100%" src="img/signals/Outputs_run.png" alt="full/Outputs_run">
+        </figure>
+      </ul>
+    </p>
+  </article>
+
+  {# 4. Background Prediction with Neural Networks #}
+  <article>
+    <header><h3>4. Background Prediction with Neural Networks</h3></header>
+    <p>
+      The software was developed starting from the data of the ACD as a playground.
+    </p>
+    <p>
+      The software implements a multioutput <strong>Feed-Forward Neural Network</strong> (FFNN) to model the temporal behaviour of the time series.
+      In the context of the ACD, the training of the neural network is performed on a dataset having as labeled output the ACD signals in the dataset and the input parameters:
+    </p>
+    <hr/>
+    <figure>
+      <img style="width: 100%" src="img/schemes/inputs_nn_output.png" alt="full/inputs_nn_output schemes">
+    </figure>
+    <p>
+      The NN implements the <strong>Mean Absolute Error</strong> as a Loss Function, which is less sensitive to outliers in the dataset. In general the MAE is defined as follows:
+    </p>
+      \[\mathrm{MAE} = \frac{1}{N}\sum_{i=1}^N\left| y_i - \hat{y}_i\right|,\]
+    <p>
+      where \(N\) is the number of samples in the dataset, \(y_i\) is the true value (<em>ground truth</em>) of the signal for the sample \(i\), and \(\hat{y}_i\) is the predicted value of the signal for that sample.
+      Applied to a multioutput NN with estimator function \(f_j\):
+    </p>
+      \[\mathrm{MAE}_j = \frac{1}{N}\sum_{i=1}^N\left| y_{j,i} - f_j(\textbf{x}_i)\right|,\]
+    <p>
+      where \(\textbf{x}_i\) is the input feature vector for sample \(i\), \(j\) is the index of the \(M\) outputs (the 5 signals in the ACD), and \(f_j(\textbf{x}_i)\) the estimated value for the 
+      \(j\)-th output variable for sample \(i\), produced by the neural network with estimator function \(f\).
+      The loss function is minimized with the average of the loss functions for each sample and each signals of the ACD:
+    </p>
+      \[\mathcal{L}_{\textit{MAE}}=\frac{1}{M}\sum_{j=1}^M \mathrm{MAE}_j=\frac{1}{M}\sum_{j=1}^M \frac{1}{N}\sum_{i=1}^N \left| y_{j,i} - f_j(\textbf{x}_i)\right|.\]
+    <p>
+      The NN is trained with the <strong>Adam</strong> optimizer, a stochastic gradient descent method that is based on adaptive estimation and 
+      a learning rate scheduler that reduces the learning rate when the loss function does not improve. 
+    </p>
+  </article>
+
+
+  {# 5. Results of the NN #}
+  <article>
+    <header><h3>5. Results of the NN</h3></header>
+    <p>
+      The FFNN was trained on a dataset from February 2024 to July 2024, and then tested on different periods with known solar flare events.
+      <figure>
+        <img style="width: 70%" src="img/pictures/result_nn.png" alt="full/result_nn">
+      </figure>
+    </p>
+    <p>
+      Even if the (present) period occurs during a solar maxima and therefore there are plenty of solar flare events, the model still has some problem in accurately describing the flares.
+      <figure>
+        <img style="width: 70%" src="img/pictures/xpos_flare.png" alt="full/xpos_flare">
+      </figure>
+    </p>
+  </article>
+
+  {# 6. Identification of anomalies: Gaussian FOCuS #}
+  <article>
+    <header><h3>6. Identification of anomalies: Gaussian FOCuS</h3></header>
+    <p>
+      The software implements a triggering algorithm based on the <strong>Gaussian FOCuS</strong> method to identify anomalies in the time series 
+      with a Gaussian distribution.
+    </p>
+    <p>
+      The FOCuS (Functional Online CUSUM) algorithm is equivalent to running methods of moving windows for all possible sizes, so that duration of the anomaly is not a parameter of the algorithm,
+      but rather assessed by the algorithm itself. The standard CUSUM statistic uses the partial sum of score statistics to time n.
+    </p>
+    <p>
+      The algorithm takes each true signal of the ACD and the prediction of its background and calculates the statistic for each signal. 
+      When the statistic is above a certain threshold, the algorithm triggers an event for the face. Successive events are merged if they are close in time (180 seconds).
+      When more then one face triggers an event, the algorithm merges the triggers to create a single anomalous event.
+    </p>
+  </article>
+
+  {# 7. Results of the Triggering Algorithm #}
+  <article>
+    <header><h3>7. Results of the Triggering Algorithm</h3></header>
+    <p>
+    </p>
+    <figure>
+      <img style="width: 49%" src="img/pictures/locpart1.png" alt="pictures/locpart1.png">
+      <img style="width: 49%" src="img/pictures/locpart2.png" alt="pictures/locpart2.png">
+      <figcaption>
+        <small>
+          Left: presumably a LOCLPAR event during a solar flare (as described in the <a href="https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3hdprods.pl?files=P&Target=heasarc%5Ffermigtrig%7C%7C%7C%5F%5Frow%3D4716%7C%7C&Coordinates=Equatorial&Equinox=2000">Fermi GBM Trigger Catalog</a>) .
+          Right: a LOCLPART event after the exit from the South Atlantic Anomaly (as described in the <a href="https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3hdprods.pl?files=P&Target=heasarc%5Ffermigtrig%7C%7C%7C%5F%5Frow%3D930%7C%7C&Coordinates=Equatorial&Equinox=2000">Fermi GBM Trigger Catalog</a>) .
+        </small>
+      </figcaption>
+    </figure>
+  </article>
+
+  {# 8. Conclusions and outlook #}
+  <article>
+    <header><h3>8. Conclusions and outlook</h3></header>
+    <p>
+      The development of <strong><span class="monospace">ACDAnomalies</span></strong> is ongoing to offer a versatile and flexible <strong>tool
+      for the anomaly detection in time series data</strong>.
+    </p>
+    <p>
+      <strong>FFNN-based models</strong> can be used to describe complex dependencies, such as the ones dependent on the environment
+      in which the Fermi satellite is immersed.
+      Work is still required to assess the performance of the neural network in big datasets and in different conditions (e.g.
+      periods in which the solar activity is particularly high).
+    </p>
+    <p>
+      The triggering algorithm is an important part of the software, and it is still under development.
+    </p>
+    <p>
+      Future development of <strong><span class="monospace">ACDAnomalies</span></strong> aims to support both integration within the Fermi software stack and its 
+      use as a <strong>stand-alone</strong> package.
+    </p>
+  </article>
+
+  {# Acknowledgements #}
+  <article>
+    <header><h3>Acknowledgements</h3></header>
+    <p>
+      The work presented in this contribution is performed in the framework of Spoke 0 and Spoke 3 of the ICSC 
+      project - <em>Centro Nazionale di Ricerca in High Performance Computing, Big Data and Quantum Computing</em>, 
+      funded by the NextGenerationEU European initiative through the Italian Ministry of University and 
+      Research, PNRR Mission 4, Component 2: Investment 1.4, Project code CN00000013 - CUP I53C21000340006.
+    </p>
+  </article>
+
+  {# References #}
+  <article>
+    <header><h3>References</h3></header>
+    <small>
+      <ol>
+        <li>Atwood et al., <em>THE LARGE AREA TELESCOPE ON THE FERMI GAMMA-RAY SPACE TELESCOPE MISSION​</em>, The Astrophysical Journal, 2009</li>
+        <li>Gaetano Romano et al., <em>Fast Online Changepoint Detection via Functional Pruning CUSUM statistics</em>, Journal of Machine Learning Research, 2023</li>
+        <li>Crupi, R., Dilillo, G., Bissaldi, E. et al., <em>Searching for long faint astronomical high energy transients: a data driven approach​</em>, Exp Astron 56, 421–476, 2023</li>
+      </ol>
+    </small>
+  </article>
+{% endblock %}
