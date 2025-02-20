@@ -69,49 +69,46 @@
       Multimessenger astrophysics relies on multiple observational data channels, necessitating efficient methods for analyzing events of astrophysical origin. With the continuous increase in both volume and complexity of data from modern observatories, advanced Machine Learning techniques have become very useful for identifying and classifying signals effectively.
     </p>
     <p>
-My project aim at developing a framework using Machine Learning techniques to analyze time series data. The use case that will be presented regards the data from the Anti-Coincidence Detector (ACD) onboard the Fermi Gamma-ray Space Telescope. The primary objective is to enhance the detection of high-energy transient events, such as Gamma-Ray Bursts (GRBs) and other astrophysical signals. An ensamble of Neural Networks models may be employed to model and predict the temporal structure of the ACD background data. The network's predictions serve as a baseline for implementing a triggering algorithm designed for anomaly detection. By identifying significant deviations from the predicted background, the system effectively flags potential astrophysical transients in the ACD time series data.
+      My project aim at developing a framework to analyze <strong>time series data</strong> using Machine Learning techniques. The scientific use case that will be presented involves the analysis of the temporal data from the Anti-Coincidence Detector (ACD) onboard the Fermi Gamma-ray Space Telescope. The primary objective is to enhance the detection of high-energy transient events, such as Gamma-Ray Bursts (GRBs), and other astrophysical signals. An ensamble of Neural Networks models may be employed to model and predict the temporal structure of the ACD background data. The network's predictions are used as a baseline for implementing a triggering algorithm, designed for anomaly detection. By identifying significant deviations from the predicted background, the system effectively flags potential astrophysical transients in the ACD time series data.
     </p>
     <p>
-In addressing challenges such as noise variability, this work explores advanced approaches to refine anomaly detection thresholds, by characterizing the noise amplitude in the data. Bayesian Neural Networks (BNNs) are highlighted as a promising method to dynamically adapt thresholds based on the noise characteristics of the data, offering a robust alternative to traditional fixed-threshold methods. These developments demonstrate a robust and adaptable framework for signal detection, applicable across various datasets and observatories in multimessenger astrophysics.
+      In addressing challenges such as noise variability in the data, this work explores advanced approaches to refine anomaly detection thresholds, by characterizing the noise amplitude. Bayesian Neural Networks (BNNs) can be used to output uncertainties on the background prediction to dynamically adapt thresholds, offering a robust alternative to traditional fixed-threshold methods.
+    </p>
+    <p>
+      The application of this framework to transients detection demonstrates its applicability across various datasets and observatories in multimessenger astrophysics.
     </p>
   </article>
 
     <article>
-    <header><h3>1. Motivation</h3></header>
+    <header><h3>1. Motivation: What is The Anti-Coincidence Detector?</h3></header>
     <p>
       This work presents a versatile and flexible <strong>Machine Learning-based software</strong> designed to
       address two challenges in the analysis of time series data: 
       <ul>
         <li><strong>modeling the temporal behaviour</strong>
-        within time series datasets to predict the evolution of time series;</li>
-        <li><strong>identifying anomalies</strong> within those series;</li>
+        within time series datasets to estimate the evolution of time series;</li>
+        <li><strong>identifying anomalies</strong> within those time series.</li>
       </ul>
     </p>
-  </article>
-
-    <article>
-    <header><h3>2. What is The Anti-Coincidence Detector?</h3></header>
     <p>
-      The <strong>Anti-Coincidence Detector</strong> (ACD) is a system on board of Fermi used to reject background
-      signal such as charged-particles from the Large Area Telescope signal. 
+      The <strong>Anti-Coincidence Detector</strong> (ACD) is a system on board of Fermi used to reject background signals such as charged-particles from the Large Area Telescope signal. 
     </p>
     <figure>
       <img style="width: 70%" src="img/pictures/ACD_from_above.jpg" alt="ACD_from_above">
     </figure>
     <p>
-      The ACD is composed of 89 plastic scintillator tiles that detect particles and photons, distributed in the five faces. The signal in each face 
-      looks like this:
+      The ACD is composed of 89 plastic scintillator tiles distributed in the five faces of the ACD. These tiles detect particles and photons and the signal in each face looks like this:
     </p>
     <figure>
-      <img style="width: 100%" src="img/signals/Outputs_24.png" alt="outputs 24 signal">
+      <img style="width: 100%" src="img/pictures/Outputs_1.png" alt="outputs 24 signal">
     </figure>
     <figure>
-      <img style="width: 100%" src="img/signals/Outputs_24_flare.png" alt="Outputs_24_flare">
+      <img style="width: 100%" src="img/pictures/Outputs_.png" alt="full/Outputs_">
     </figure>
   </article>
 
     <article>
-    <header><h3>3. Dataset</h3></header>
+    <header><h3>2. Dataset</h3></header>
     <p>
       The dataset used for the training and testing of the software is composed of the time series of the five signals in the ACD and a set of input features:
       <ul>
@@ -121,114 +118,120 @@ In addressing challenges such as noise variability, this work explores advanced 
         </figure>
         <li>the <strong>Solar Activity</strong> retrieved from the Geostationary Operational Environmental Satellite (GOES) X-Ray Sensor (XRS);</li>
         <figure>
-          <img style="width: 100%" src="img/pictures/inputs_solar.png" alt="full/inputs_solar schemes">
+          <img style="width: 100%" src="img/pictures/flares.png" alt="full/flares schemes">
         </figure>
         <li>the signals of the five faces in the ACD.</li>
-        <figure>
-          <img style="width: 100%" src="img/signals/Outputs_run.png" alt="full/Outputs_run">
-        </figure>
       </ul>
     </p>
   </article>
 
     <article>
-    <header><h3>4. Background Prediction with Neural Networks</h3></header>
+    <header><h3>3. Background Prediction with Bayesian Neural Networks</h3></header>
     <p>
       The software was developed starting from the data of the ACD as a playground.
     </p>
     <p>
-      The software implements a multioutput <strong>Feed-Forward Neural Network</strong> (FFNN) to model the temporal behaviour of the time series.
-      In the context of the ACD, the training of the neural network is performed on a dataset having as labeled output the ACD signals in the dataset and the input parameters:
+      The software implements a multioutput <strong>Bayesian Neural Network</strong> (BNN) to model the temporal behaviour of the time series. Unlike traditional feed-forward neural networks, the BNN not only provides point estimates but also quantifies the uncertainty associated with each prediction.
+      In the context of the ACD, the training of the Bayesian Neural Network is performed on a dataset where the ACD signals serve as the labeled outputs and a set of input parameters characterize each sample.
     </p>
     <hr/>
     <figure>
       <img style="width: 100%" src="img/schemes/inputs_nn_output.png" alt="full/inputs_nn_output schemes">
     </figure>
     <p>
-      The NN implements the <strong>Mean Absolute Error</strong> as a Loss Function, which is less sensitive to outliers in the dataset. In general the MAE is defined as follows:
+      The BNN is trained using a likelihood-based loss function derived from the <strong>Gaussian Negative Log Likelihood</strong> (NLL). This loss function is particularly suitable when the data is assumed to be Gaussian, as it penalizes deviations based on both the error in the prediction and the predicted uncertainty.
     </p>
-      \[\mathrm{MAE} = \frac{1}{N}\sum_{i=1}^N\left| y_i - \hat{y}_i\right|,\]
     <p>
-      where \(N\) is the number of samples in the dataset, \(y_i\) is the true value (<em>ground truth</em>) of the signal for the sample \(i\), and \(\hat{y}_i\) is the predicted value of the signal for that sample.
-      Applied to a multioutput NN with estimator function \(f_j\):
+      The Gaussian NLL is defined as:
     </p>
-      \[\mathrm{MAE}_j = \frac{1}{N}\sum_{i=1}^N\left| y_{j,i} - f_j(\textbf{x}_i)\right|,\]
+    \[
+    \mathcal{L}_{\textit{NLL}} = \frac{1}{N}\sum_{i=1}^N \left( \frac{1}{2}\log(\sigma_i^2) + \frac{(y_i - \mu_i)^2}{2\sigma_i^2} \right),
+    \]
     <p>
-      where \(\textbf{x}_i\) is the input feature vector for sample \(i\), \(j\) is the index of the \(M\) outputs (the 5 signals in the ACD), and \(f_j(\textbf{x}_i)\) the estimated value for the 
-      \(j\)-th output variable for sample \(i\), produced by the neural network with estimator function \(f\).
-      The loss function is minimized with the average of the loss functions for each sample and each signals of the ACD:
+      where \(N\) is the number of samples, \(y_i\) is the true value (ground truth) of the signal for the \(i\)-th sample, \(\mu_i\) is the predicted mean, and \(\sigma_i^2\) is the predicted variance, representing the uncertainty in the prediction.
+      For a multioutput BNN with an estimator function \(f_j\) for the \(j\)-th output, the loss can be written as:
     </p>
-      \[\mathcal{L}_{\textit{MAE}}=\frac{1}{M}\sum_{j=1}^M \mathrm{MAE}_j=\frac{1}{M}\sum_{j=1}^M \frac{1}{N}\sum_{i=1}^N \left| y_{j,i} - f_j(\textbf{x}_i)\right|.\]
+    \[
+    \mathcal{L}_{\textit{NLL},j} = \frac{1}{N}\sum_{i=1}^N \left( \frac{1}{2}\log(\sigma_{j,i}^2) + \frac{(y_{j,i} - f_j(\mathbf{x}_i))^2}{2\sigma_{j,i}^2} \right),
+    \]
     <p>
-      The NN is trained with the <strong>Adam</strong> optimizer, a stochastic gradient descent method that is based on adaptive estimation and 
-      a learning rate scheduler that reduces the learning rate when the loss function does not improve. 
+      where \(\mathbf{x}_i\) is the input feature vector for sample \(i\), \(j\) indexes the \(M\) outputs (the 5 signals in the ACD), and \(f_j(\mathbf{x}_i)\) denotes the estimated mean for the \(j\)-th output, with an associated uncertainty \(\sigma_{j,i}^2\).
+      The overall loss is then computed by averaging over all outputs and samples:
+    </p>
+    \[
+    \mathcal{L}_{\textit{NLL}}=\frac{1}{M}\sum_{j=1}^M \mathcal{L}_{\textit{NLL},j} =\]
+
+    \[ =\frac{1}{M}\sum_{j=1}^M \frac{1}{N}\sum_{i=1}^N \left( \frac{1}{2}\log(\sigma_{j,i}^2) + \frac{(y_{j,i} - f_j(\mathbf{x}_i))^2}{2\sigma_{j,i}^2} \right).
+    \]
+    <p>
+      The Bayesian Neural Network is trained using the <strong>Adam</strong> optimizer, a stochastic gradient descent method based on adaptive estimation. In addition, a learning rate scheduler is applied to reduce the learning rate when the loss function ceases to improve, ensuring robust convergence during training.
     </p>
   </article>
 
 
+
     <article>
-    <header><h3>5. Results of the NN</h3></header>
+    <header><h3>4. Results of the NN</h3></header>
     <p>
-      The FFNN was trained on a dataset from February 2024 to July 2024, and then tested on different periods with known solar flare events.
-      <figure>
-        <img style="width: 70%" src="img/pictures/result_nn.png" alt="full/result_nn">
-      </figure>
+      The FFNN was trained on three periods of two months between January 2024 and December 2024, and then tested on different periods with known solar flare events.
     </p>
     <p>
-      Even if the (present) period occurs during a solar maxima and therefore there are plenty of solar flare events, the model still has some problem in accurately describing the flares.
+      The figure here shown represents the prediction of the BNN for the signal in the Xpos face of the ACD, during a period in which the solar activity was particularly high. The prediction has an associated uncertainty, which is used to set the threshold for the triggering algorithm.
       <figure>
-        <img style="width: 70%" src="img/pictures/xpos_flare.png" alt="full/xpos_flare">
+        <img style="width: 80%" src="img/pictures/Xpos_.png" alt="">
       </figure>
     </p>
   </article>
 
     <article>
-    <header><h3>6. Identification of anomalies: Gaussian FOCuS</h3></header>
+    <header><h3>5. Identification of anomalies: Gaussian FOCuS and Z-Score</h3></header>
     <p>
       The software implements a triggering algorithm based on the <strong>Gaussian FOCuS</strong> method to identify anomalies in the time series 
       with a Gaussian distribution.
     </p>
     <p>
-      The FOCuS (Functional Online CUSUM) algorithm is equivalent to running methods of moving windows for all possible sizes, so that duration of the anomaly is not a parameter of the algorithm,
-      but rather assessed by the algorithm itself. The standard CUSUM statistic uses the partial sum of score statistics to time n.
+      The FOCuS (Functional Online CUSUM) algorithm is equivalent to running methods of moving windows for all possible sizes, so that duration of the anomaly is not a parameter of the algorithm, but rather assessed by the algorithm itself. The standard CUSUM statistic uses the partial sum of score statistics to time n.
     </p>
     <p>
-      The algorithm takes each true signal of the ACD and the prediction of its background and calculates the statistic for each signal. 
-      When the statistic is above a certain threshold, the algorithm triggers an event for the face. Successive events are merged if they are close in time (180 seconds).
+      The algorithm takes each true signal of the ACD and the prediction of its background and calculates the statistic for each signal. When the statistic is above a certain threshold, the algorithm triggers an event for the face. Successive events are merged if they are close in time (180 seconds).
       When more then one face triggers an event, the algorithm merges the triggers to create a single anomalous event.
+    </p>
+    <p>
+      Another method used to identify anomalies is the <strong>Z-Score</strong> method. The Z-Score is calculated as the difference between the true signal and the predicted signal divided by the uncertainty of the prediction. The Z-Score is then compared to a threshold to identify anomalies.
+    </p>
+    <p>
+      Both these methods are used to identify anomalies and to compare them to known events in the Fermi GBM Trigger Catalog.
     </p>
   </article>
 
     <article>
-    <header><h3>7. Results of the Triggering Algorithm</h3></header>
+    <header><h3>6. Results of the Triggering Algorithm</h3></header>
     <p>
+      Some of the events identified by the triggering algorithm are shown in the following figures.
     </p>
     <figure>
-      <img style="width: 49%" src="img/pictures/locpart1.png" alt="pictures/locpart1.png">
-      <img style="width: 49%" src="img/pictures/locpart2.png" alt="pictures/locpart2.png">
+      <img style="width: 49%" src="img/pictures/2024-01-31 16:16:54_Xpos_Yneg.png" alt="pictures/2024-01-31 16:16:54_Xpos_Yneg.png">
+      <img style="width: 49%" src="img/pictures/2024-03-10 12:08:44_top_Xpos.png" alt="pictures/2024-03-10 12:08:44_top_Xpos.png">
       <figcaption>
         <small>
-          Left: presumably a LOCLPAR event during a solar flare (as described in the <a href="https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3hdprods.pl?files=P&Target=heasarc%5Ffermigtrig%7C%7C%7C%5F%5Frow%3D4716%7C%7C&Coordinates=Equatorial&Equinox=2000">Fermi GBM Trigger Catalog</a>) .
-          Right: a LOCLPART event after the exit from the South Atlantic Anomaly (as described in the <a href="https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3hdprods.pl?files=P&Target=heasarc%5Ffermigtrig%7C%7C%7C%5F%5Frow%3D930%7C%7C&Coordinates=Equatorial&Equinox=2000">Fermi GBM Trigger Catalog</a>) .
+          Left: a TGF	(Terrestrial Gamma-Ray Flash) event (as described in the <a href="https://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/w3hdprods.pl?files=Preview&Coordinates=Equatorial&Equinox=2000&CheckSize=1&showgifs=1&Target=heasarc%5Ffermigtrig%7C%7C%7C%5F%5Frow%3D1674%7C%7C&popupFrom=&querytime=1740069805">Fermi GBM Trigger Catalog</a>) .
+          Right: presumibly a LOCLPART event during a solar flare event (as described in the <a href="https://heasarc.gsfc.nasa.gov/db-perl/W3Browse/w3hdprods.pl?files=P&Target=heasarc%5Ffermigtrig%7C%7C%7C%5F%5Frow%3D4716%7C%7C&Coordinates=Equatorial&Equinox=2000">Fermi GBM Trigger Catalog</a>) .
         </small>
       </figcaption>
     </figure>
   </article>
 
     <article>
-    <header><h3>8. Conclusions and outlook</h3></header>
+    <header><h3>7. Conclusions and outlook</h3></header>
     <p>
       The development of <strong><span class="monospace">ACDAnomalies</span></strong> is ongoing to offer a versatile and flexible <strong>tool
       for the anomaly detection in time series data</strong>.
     </p>
     <p>
-      <strong>FFNN-based models</strong> can be used to describe complex dependencies, such as the ones dependent on the environment
-      in which the Fermi satellite is immersed.
-      Work is still required to assess the performance of the neural network in big datasets and in different conditions (e.g.
-      periods in which the solar activity is particularly high).
+      <strong>Bayesian NN-based models</strong> can be used to describe complex dependencies, such as the ones that characterize the environment in which the Fermi satellite is immersed along its orbit. Work is still required to assess the performance of the neural network in big datasets and in different conditions (e.g. periods in which the solar activity is particularly high).
     </p>
     <p>
-      The triggering algorithm is an important part of the software, and it is still under development.
+      The triggering algorithm is an important part of the software, and its efficiency is under assessment.
     </p>
     <p>
       Future development of <strong><span class="monospace">ACDAnomalies</span></strong> aims to support both integration within the Fermi software stack and its 
