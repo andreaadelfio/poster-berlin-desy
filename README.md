@@ -18,7 +18,7 @@ in [*European AI for Fundamental Physics Conference 2024*](https://www.aanmelder
   Multimessenger astrophysics relies on multiple observational data channels, necessitating efficient methods for analyzing events of astrophysical origin. With the continuous increase in both volume and complexity of data from modern observatories, advanced Machine Learning techniques have become very useful for identifying and classifying signals effectively.
 </p>
 <p>
-  My project aim at developing a framework using Machine Learning techniques to analyze time series data. The use case that will be presented regards the data from the Anti-Coincidence Detector (ACD) onboard the Fermi Gamma-ray Space Telescope. The primary objective is to enhance the detection of high-energy transient events, such as Gamma-Ray Bursts (GRBs) and other astrophysical signals.
+  The aim of my project is to develop a framework using Machine Learning techniques to analyze time series data. The use case that will be presented regards the data from the Anti-Coincidence Detector (ACD) onboard the Fermi Gamma-ray Space Telescope. The primary objective is to enhance the detection of high-energy transient events, such as Gamma-Ray Bursts (GRBs) and other astrophysical signals.
   An ensamble of Neural Networks models may be employed to model and predict the temporal structure of the ACD background data. The network's predictions serve as a baseline for implementing a triggering algorithm designed for anomaly detection. By identifying significant deviations from the predicted background, the system effectively flags potential astrophysical transients in the ACD time series data.
 </p>
 <p>
